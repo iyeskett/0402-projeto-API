@@ -2,6 +2,7 @@ const vm = new Vue({
     el: '#app',
     data:{
         produtos: [],
+        produto: false
     },
     filters:{
         numeroPreco(valor){
@@ -13,6 +14,11 @@ const vm = new Vue({
             fetch('./api/produtos.json')
             .then(response => response.json())
             .then(json => this.produtos = json)
+        },
+        fetchProduto(id){
+            fetch(`./api/produtos/${id}/dados.json`)
+            .then(response => response.json())
+            .then(json => this.produto = json)
         }
     },
     created(){
